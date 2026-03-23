@@ -89,18 +89,15 @@ ASGI_APPLICATION = 'email_project.asgi.application'
 # }
 
 DATABASES = {
-#    AWS database (must remain active)
     'default': {
-         'ENGINE': 'django.db.backends.mysql',
-         'NAME': 'stackly_db',
-         'USER': 'stackly_test',
-         'PASSWORD': 'Test@1234',
-         'HOST': 'localhost',
-         'PORT': '3306',
-     }
- 
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'stackly_email_db',
+        'USER': 'stackly_test',
+        'PASSWORD': 'Srini$1516',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
 }
-   
  
     
      
