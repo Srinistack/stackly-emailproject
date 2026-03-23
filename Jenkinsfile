@@ -30,7 +30,7 @@ pipeline {
                     npm install
                     npm run build
                 else
-                    echo "⚠️ Frontend directory not found, skipping build"
+                    echo "Frontend directory not found, skipping build"
                 fi
                 '''
             }
@@ -40,7 +40,7 @@ pipeline {
             steps {
                 sshagent([env.SSH_KEY]) {
                     sh """
-                    rsync -avz --delete \
+                    rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" \
                       --exclude='.git' \
                       --exclude='node_modules' \
                       --exclude='.ssh' \
@@ -50,23 +50,26 @@ pipeline {
                       fastapi_app \
                       manage.py \
                       requirements.txt \
-                      ${DEPLOY_USER}@${DEPLOY_HOST}:${APP_DIR}
+                      ${DEPLOY_USER}@${DEPLOY_HOST}:${APP_DIR}/
 
                     ssh -o StrictHostKeyChecking=no ${DEPLOY_USER}@${DEPLOY_HOST} '
                         set -e
                         cd ${APP_DIR}
 
                         if [ ! -d venv ]; then
-                            echo "🔧 Creating virtual environment"
+                            echo "Creating virtual environment"
                             python3 -m venv venv
                         fi
 
-                        source venv/bin/activate
+                        . venv/bin/activate
                         pip install --upgrade pip
                         pip install -r requirements.txt
-                        python manage.py migrate --noinput
 
-                        echo "🎨 Frontend build ready (served directly by nginx)"
+                        if [ -f manage.py ]; then
+                            python manage.py migrate --noinput
+                        fi
+
+                        echo "Frontend build ready"
                     '
                     """
                 }
@@ -79,6 +82,7 @@ pipeline {
                     sh """
                     ssh -o StrictHostKeyChecking=no ${DEPLOY_USER}@${DEPLOY_HOST} '
                         sudo systemctl restart fastapi
+                        sudo systemctl restart nginx || true
                     '
                     """
                 }
@@ -88,10 +92,10 @@ pipeline {
 
     post {
         success {
-            echo '✅ stackly-email deployed successfully'
+            echo 'stackly-email deployed successfully'
         }
         failure {
-            echo '❌ Deployment failed – check stage logs'
+            echo 'Deployment failed – check stage logs'
         }
     }
 }
