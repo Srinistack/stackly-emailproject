@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         GIT_CREDS  = 'github-token-emailapp'
-        GIT_REPO   = 'https://github.com/Srinistack/stackly-email.git'
+        GIT_REPO   = 'https://github.com/Srinistack/stackly-emailproject.git'
         GIT_BRANCH = 'main'
 
         SSH_KEY     = 'deploy-ec2-key'
