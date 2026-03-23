@@ -29,7 +29,7 @@ app.mount("/ws", django_asgi_app)
 app.add_middleware(
     CORSMiddleware,
      allow_origins=[
-            "http://34.208.181.79","http://34.208.181.79:8000",
+            "http://34.200.226.33","http://34.200.226.33:8000",
             #   "http://localhost:5173","http://localhost:8000",
         ],
     allow_credentials=True,
