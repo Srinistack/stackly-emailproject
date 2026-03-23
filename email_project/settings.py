@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG') == 'True'
 
-ALLOWED_HOSTS = ["44.192.78.111"]
+ALLOWED_HOSTS = ["34.200.226.33"]
 
 
 # Application definition
@@ -171,7 +171,7 @@ CHANNEL_LAYERS = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-          "http:/44.192.78.111","http://44.192.78.111:8000",
+          "http://34.200.226.33","http://34.200.226.33:8000",
             #    "http://localhost:5173","http://localhost:8000",
         ]
 
@@ -187,7 +187,7 @@ CORS_ALLOW_METHODS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-   "http://localhost:5173","http://localhost:5174","http://44.192.78.111","http://44.192.78.111:8000" 
+   "http://localhost:5173","http://localhost:5174","http://34.200.226.33","http://34.200.226.33:8000" 
 ]
 
 FAST2SMS_API_KEY = os.getenv("FAST2SMS_API_KEY")
