@@ -7,7 +7,7 @@ pipeline {
         GIT_BRANCH = 'main'
 
         SSH_KEY     = 'deploy-ec2-key'
-        DEPLOY_USER = 'ubuntu'
+        DEPLOY_USER = 'ubundu'
         DEPLOY_HOST = '172.31.41.124'
         APP_DIR     = '/home/ubuntu/stackly-email'
     }
