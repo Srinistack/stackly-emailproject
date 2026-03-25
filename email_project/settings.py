@@ -94,7 +94,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'stackly_new_email_db',   # 👈 NEW DB
         'USER': 'stackly_user',           # 👈 NEW USER
-        'PASSWORD': 'Stackly@123',
+        'PASSWORD': 'Srini$1516',
         'HOST': 'localhost',
         'PORT': '3306',
     }
